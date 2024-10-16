@@ -12,6 +12,9 @@ In the examples we're gonna stick with `.env` files and `master.key` as the encr
 ---
 
 ## Usage
+
+INFO: Files: `.env.test`, `.env.development`, `config/master.key` are for demonstrational purposes only. You don't need to share any of those files on GitHub.
+
 1. Open [env_retriever.rb](env_retriever.rb) edit the line 64, add the files you need to encrypt.
 2. **Encrypt the `.env` file(s)**:
     - Run the encryption script to encrypt the `.env` files.
