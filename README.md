@@ -1,6 +1,13 @@
-# Env Files Encryptor for Ruby
+# File Encryptor for Ruby
 
-This script encrypts your `.env` files using **AES-256-CBC** with a `master.key` as the encryption key.
+---
+## Intro
+
+This script encrypts your files using **AES-256-CBC** with a custom key.
+
+It's useful to encrypt secrets, etc. 
+
+In the examples we're gonna stick with `.env` files and `master.key` as the encryption key. 
 
 ---
 
