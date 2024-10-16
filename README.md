@@ -1,4 +1,4 @@
-# Env Files Encryptor
+# Env Files Encryptor for Ruby
 
 This script encrypts your `.env` files using **AES-256-CBC** with a `master.key` as the encryption key.
 
@@ -39,3 +39,14 @@ You can integrate the decryptor into your application depending on your preferen
    - Just move the modules straight into file.
 
 ---
+
+## Playground
+
+1. clone the repo
+2. ```bash
+   ruby -r './env_retriever.rb' -e 'EnvRetriever.encrypt_files'
+   ```
+3. ```bash
+   ruby -r './env_retriever.rb' -e 'EnvRetriever.decrypt_files'
+   ```
+4. Works? You're good to go.

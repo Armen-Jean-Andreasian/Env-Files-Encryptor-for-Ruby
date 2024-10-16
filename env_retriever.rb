@@ -21,11 +21,11 @@ module Encryptor
       outf.write(iv)
 
       File.open(filepath, 'rb') do |inf|
-        buf = String.new # Initialize buf as a mutable string
+        buf = String.new
         while inf.read(4096, buf)
           outf.write(cipher.update(buf))
         end
-        outf.write(cipher.final) # Finalize the encryption
+        outf.write(cipher.final)
       end
     end
     puts "Encryption successful! Encrypted file: #{encrypted_file}"
@@ -47,11 +47,11 @@ module Encryptor
       cipher.iv = iv
 
       File.open(decrypted_file, 'wb') do |outf|
-        buf = String.new # Initialize buf as a mutable string
+        buf = String.new
         while inf.read(4096, buf)
           outf.write(cipher.update(buf))
         end
-        outf.write(cipher.final) # Finalize the decryption
+        outf.write(cipher.final)
       end
     end
 
@@ -62,23 +62,20 @@ end
 # Encrypts and decrypts .env files with master.key
 module EnvRetriever
   ENV_FILES = %w[.env.development .env.test].freeze # <- REPLACE THIS WITH YOUR .env FILES
+  MASTER_KEY_PATH = 'config/master.key'
 
   def self.encrypt_files(delete_original: true)
     ENV_FILES.each do |file|
-      Encryptor.encrypt(filepath: file, key: read_master_key)
+      Encryptor.encrypt(filepath: file, key: File.read(MASTER_KEY_PATH).strip)
       delete_file(filepath: file) if delete_original
     end
   end
 
   def self.decrypt_files(delete_original: true)
     ENV_FILES.each do |file|
-      Encryptor.decrypt(filepath: file, key: read_master_key)
+      Encryptor.decrypt(filepath: file, key: File.read(MASTER_KEY_PATH).strip)
       delete_file(filepath: "#{file}.enc") if delete_original
     end
-  end
-
-  def self.read_master_key
-    File.read('config/master.key').strip # Read and strip the master key directly
   end
 
   def self.delete_file(filepath:)
