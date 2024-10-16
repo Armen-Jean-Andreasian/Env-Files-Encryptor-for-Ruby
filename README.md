@@ -5,13 +5,13 @@ This script encrypts your `.env` files using **AES-256-CBC** with a `master.key`
 ---
 
 ## Usage
-
-1. **Encrypt the `.env` file(s)**:
+1. Open [env_retriever.rb](env_retriever.rb) edit the line 64, add the files you need to encrypt.
+2. **Encrypt the `.env` file(s)**:
     - Run the encryption script to encrypt the `.env` files.
     - Add the original `.env` files to `.gitignore` or delete them to prevent them from being pushed to version control.
     - Push the encrypted `.env.enc` files to GitHub instead.
 
-2. **Decrypt when needed**:
+3. **Decrypt when needed**:
     - Decrypt the `.env.enc` files during the deployment or when needed by using the provided decryption method.
 
 The script uses only `openssl` lib, which is built-in. 
