@@ -3,17 +3,16 @@
 ---
 ## Intro
 
-This script encrypts your files using **AES-256-CBC** with a custom key.
+This script encrypts your files using **AES-256-CBC** with a custom key. It's especially useful for encrypting sensitive data, such as secrets, that you need to gitignore or add to a remote host. This allows you to securely share files while maintaining the confidentiality of sensitive information.
 
-It's useful to encrypt secrets, etc. 
+In the examples, we will use `.env` files and `master.key` as the encryption key.
 
-In the examples we're gonna stick with `.env` files and `master.key` as the encryption key. 
+**Important Security Note**: If you lose your master key, you will lose access to your encrypted files. This script is framework-independent and isolated. For example, even if you generate a new master key for your Rails app, it will not unlock your previously encrypted files, and you will lose them forever.
 
 ---
 
 ## Usage
 
-INFO: Files: `.env.test`, `.env.development`, `config/master.key` are for demonstrational purposes only. You don't need to share any of those files on GitHub.
 
 1. Open [env_retriever.rb](env_retriever.rb) edit the line 64, add the files you need to encrypt.
 2. **Encrypt the `.env` file(s)**:
@@ -25,6 +24,9 @@ INFO: Files: `.env.test`, `.env.development`, `config/master.key` are for demons
     - Decrypt the `.env.enc` files during the deployment or when needed by using the provided decryption method.
 
 The script uses only `openssl` lib, which is built-in. 
+
+
+**INFO:** Files: `.env.test`, `.env.development`, `config/master.key` are for demonstrational purposes only. You don't need to share any of those files on GitHub.
 
 ---
 
